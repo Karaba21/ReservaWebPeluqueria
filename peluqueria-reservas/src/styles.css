@@ -1,0 +1,46 @@
+.app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .booking-form {
+    margin-bottom: 40px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .horario-btn {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .horario-btn.disponible {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .horario-btn.ocupado {
+    background-color: #f44336;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  .contact-map {
+    text-align: center;
+  }
