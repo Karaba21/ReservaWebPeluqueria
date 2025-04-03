@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import BookingForm from './components/BookingForm';
-import ContactMap from './components/ContactMap';
+import ContactMap from './components/ContactMap.js'; // Fuerza la extensión .js
 import './styles.css';
 
 function App() {

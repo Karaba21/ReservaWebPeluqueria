@@ -1,46 +1,224 @@
-.app {
-    max-width: 800px;
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .app {
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
   }
   
+  /* Header */
   .header {
     text-align: center;
-    margin-bottom: 40px;
+    padding: 40px 0;
+    background: linear-gradient(135deg, #2c3e50, #39444b);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  .header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+  
+  .logo img {
+    max-width: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 15px;
+  }
+  
+  /* Formulario de reservas */
   .booking-form {
-    margin-bottom: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .booking-form h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
   }
   
   .form-group {
     margin-bottom: 20px;
   }
   
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  
+  /* Horarios */
+  .horarios {
+    margin-top: 25px;
+  }
+  
+  .horarios h3 {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
   .horarios-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
   }
   
   .horario-btn {
-    padding: 10px;
+    padding: 12px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
   }
   
   .horario-btn.disponible {
-    background-color: #4CAF50;
+    background-color: #2ecc71;
     color: white;
+  }
+  
+  .horario-btn.disponible:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+  }
+  
+  .horario-btn.seleccionado {
+    background-color: #3498db;
+    color: white;
+    transform: scale(1.05);
   }
   
   .horario-btn.ocupado {
-    background-color: #f44336;
+    background-color: #e74c3c;
     color: white;
     cursor: not-allowed;
+    opacity: 0.7;
   }
   
+  .btn-reservar {
+    background-color: #3498db;
+    color: white;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .btn-reservar:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-reservar:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* Contacto y Mapa */
   .contact-map {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-map h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+  }
+  
+  .contact-map p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+  }
+  
+  .map {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mensajes */
+  .mensaje {
+    padding: 15px;
+    border-radius: 6px;
+    margin: 20px 0;
     text-align: center;
+    font-weight: 600;
+  }
+  
+  .mensaje.exito {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .mensaje.error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .app {
+      padding: 15px;
+    }
+    
+    .header {
+      padding: 25px 0;
+    }
+    
+    .header h1 {
+      font-size: 2rem;
+    }
+    
+    .horarios-grid {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
   }

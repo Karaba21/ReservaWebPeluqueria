@@ -1,13 +1,13 @@
 import React from 'react';
+import logo from '../assets/logo.png';  
 
 const Header = () => {
   return (
     <section className="header">
       <div className="logo">
-        {/* Reemplaza con tu logo */}
-        <img src="logo.png" alt="Logo Peluquería" />
+        <img src={logo} alt="Logo Peluquería" className='logo' />
       </div>
-      <h1>Nombre de tu Peluquería</h1>
+      <h1>Peluquería para hombres</h1>
     </section>
   );
 };

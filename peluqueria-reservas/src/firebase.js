@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO",
-  storageBucket: "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyDk9ZaFpJILG21O89mmYeCtw5Lim5Ww3bE",
+  authDomain: "peluqueria-35973.firebaseapp.com",
+  projectId: "peluqueria-35973",
+  storageBucket: "peluqueria-35973.firebasestorage.app",
+  messagingSenderId: "1:1094200770487:web:e6b5d4951f900cec91f232",
+  appId: "G-VGYRG6GDL1"
 };
 
 const app = initializeApp(firebaseConfig);
