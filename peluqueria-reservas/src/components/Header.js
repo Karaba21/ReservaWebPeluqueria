@@ -1,15 +1,48 @@
-import React from 'react';
-import logo from '../assets/logo.png';  
+import { Link } from 'react-router-dom';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+import logo from '../assets/logo.png'; 
 
-const Header = () => {
+export default function Header({ user }) {
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
+  };
+
   return (
-    <section className="header">
-      <div className="logo">
-        <img src={logo} alt="Logo Peluquería" className='logo' />
+    <header className="header">
+      <div className="header-logo">
+        <div className="logo-container">
+          <Link to="/">
+            <img src={logo} alt="Logo Peluquería" />
+          </Link>
+        </div>
+        <h1 className="site-name">Peluquería para hombres</h1>
       </div>
-      <h1>Peluquería para hombres</h1>
-    </section>
+      
+      <div className="header-buttons">
+        <Link to="/" className="header-btn header-home">
+          Inicio
+        </Link>
+        
+        {user ? (
+          <>
+            <Link to="/admin" className="header-btn header-admin">
+              Ver Reservas
+            </Link>
+            <button onClick={handleLogout} className="header-btn header-logout">
+              Cerrar Sesión
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="header-btn header-login">
+            Iniciar Sesión
+          </Link>
+        )}
+      </div>
+    </header>
   );
-};
-
-export default Header;
+}

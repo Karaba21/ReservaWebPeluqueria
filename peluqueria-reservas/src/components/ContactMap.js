@@ -4,7 +4,7 @@ const ContactMap = () => {
   return (
     <section className="contact-map">
       <h2>Contacto</h2>
-      <p>Dirección: Av. Gral. Flores 3026, 11800 Montevideo, Uruguay</p>
+      <p>Dirección: Orinoco 5082, Montevideo, Uruguay</p>
       <p>Teléfono: 1234 5678</p>
       <div className="map">
         <iframe
