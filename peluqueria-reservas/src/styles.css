@@ -342,3 +342,127 @@ body {
       width: 90%; /* Ocupar casi todo el ancho */
     }
   }
+
+  /* Estilos para la tabla de reservas */
+  .reservas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .reservas-table th,
+  .reservas-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  .reservas-table th {
+    background-color: #2c3e50;
+    color: white;
+    font-weight: 600;
+  }
+
+  .reservas-table tr:hover {
+    background-color: #f8f9fa;
+  }
+
+  .btn-cancelar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-cancelar:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+  }
+
+  .admin-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .admin-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  /* Login estilizado y centrado */
+  .login-outer-container {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-container {
+    background: white;
+    padding: 22px 16px 18px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.10);
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-container h2 {
+    margin-bottom: 16px;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .login-input {
+    padding: 8px 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.98rem;
+    transition: border 0.3s;
+  }
+
+  .login-btn {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .login-btn:hover {
+    background: linear-gradient(to right, #2980b9, #3498db);
+    transform: translateY(-2px);
+  }
+
+  .error-message {
+    color: #c0392b;
+    background: #f8d7da;
+    border-radius: 4px;
+    padding: 7px;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }

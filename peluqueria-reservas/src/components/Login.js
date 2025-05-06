@@ -21,26 +21,30 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2>Acceso Peluqueros</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Ingresar</button>
-        {error && <p className="error-message">{error}</p>}
-      </form>
+    <div className="login-outer-container">
+      <div className="login-container">
+        <h2>Acceso Peluqueros</h2>
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="login-input"
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="login-input"
+          />
+          <button type="submit" className="login-btn">Ingresar</button>
+          {error && <p className="error-message">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 }

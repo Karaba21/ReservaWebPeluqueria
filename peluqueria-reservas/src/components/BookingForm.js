@@ -126,8 +126,16 @@ const BookingForm = () => {
         <input
           type="tel"
           value={clienteTelefono}
-          onChange={(e) => setClienteTelefono(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) {
+              setClienteTelefono(value);
+            }
+          }}
           placeholder="+56912345678"
+          pattern="[0-9]*"
+          inputMode="numeric"
+          maxLength="12"
         />
       </div>
 
