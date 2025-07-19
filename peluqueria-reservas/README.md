@@ -1,70 +1,223 @@
-# Getting Started with Create React App
+# 🪒 Sistema de Reservas - Peluquería
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sistema web completo para gestión de reservas de peluquería desarrollado con React y Firebase. Permite a los clientes realizar reservas online y a los dueños administrar las citas desde un panel de control.
 
-## Available Scripts
+## ✨ Características
 
-In the project directory, you can run:
+### Para Clientes
+- 📅 Reserva de citas online sin necesidad de registro
+- 👨‍💼 Selección de peluquero y especialidad
+- 🕐 Visualización de horarios disponibles en tiempo real
+- 📱 Interfaz responsive para móviles y desktop
+- 📍 Información de contacto y ubicación
 
-### `npm start`
+### Para Administradores
+- 🔐 Panel de administración con autenticación
+- 📊 Visualización de reservas por fecha
+- ❌ Cancelación de reservas
+- 👥 Gestión de peluqueros y horarios
+- 📱 Acceso desde cualquier dispositivo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tecnologías Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend:** React 18.2.0
+- **Base de Datos:** Firebase Firestore
+- **Autenticación:** Firebase Auth
+- **Hosting:** Firebase Hosting
+- **Routing:** React Router DOM
+- **Estilos:** CSS3 con diseño responsive
 
-### `npm test`
+## 📋 Requisitos Previos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (versión 14 o superior)
+- npm o yarn
+- Cuenta de Firebase
 
-### `npm run build`
+## 🚀 Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clona el repositorio**
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd peluqueria-reservas
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Instala las dependencias**
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Configura Firebase**
+   - Crea un proyecto en [Firebase Console](https://console.firebase.google.com/)
+   - Habilita Firestore Database
+   - Habilita Authentication (Email/Password)
+   - Obtén la configuración de Firebase
 
-### `npm run eject`
+4. **Configura las variables de Firebase**
+   Edita el archivo `src/firebase.js` con tu configuración:
+   ```javascript
+   const firebaseConfig = {
+     apiKey: "tu-api-key",
+     authDomain: "tu-proyecto.firebaseapp.com",
+     projectId: "tu-proyecto",
+     storageBucket: "tu-proyecto.appspot.com",
+     messagingSenderId: "tu-sender-id",
+     appId: "tu-app-id"
+   };
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Configura las reglas de Firestore**
+   En Firebase Console > Firestore Database > Reglas, usa estas reglas:
+   ```javascript
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /reservas/{reservaId} {
+         allow create: if request.resource.data.clienteTelefono is string;
+         allow read, delete, update: if request.auth != null;
+       }
+       match /peluqueros/{peluqueroId} {
+         allow read: if true;
+         allow write: if false;
+       }
+     }
+   }
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6. **Ejecuta el proyecto**
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📁 Estructura del Proyecto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+peluqueria-reservas/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── BookingForm.js      # Formulario de reservas
+│   │   ├── AdminReservas.js    # Panel de administración
+│   │   ├── Login.js           # Formulario de login
+│   │   ├── Header.js          # Header de la aplicación
+│   │   └── ContactMap.js      # Información de contacto
+│   ├── App.js                 # Componente principal
+│   ├── firebase.js           # Configuración de Firebase
+│   ├── styles.css            # Estilos globales
+│   └── index.js              # Punto de entrada
+└── package.json
+```
 
-## Learn More
+## 🔧 Configuración Inicial
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Crear Colecciones en Firestore
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Colección: `peluqueros`**
+```javascript
+{
+  "nombre": "Nombre del Peluquero",
+  "especialidad": "Corte de cabello, Barba, etc."
+}
+```
 
-### Code Splitting
+**Colección: `reservas`** (se crea automáticamente)
+```javascript
+{
+  "clienteNombre": "Nombre del Cliente",
+  "clienteTelefono": "123456789",
+  "peluqueroId": "ID_DEL_PELUQUERO",
+  "fecha": "2024-01-15",
+  "hora": "14:30",
+  "estado": "pendiente",
+  "createdAt": "timestamp"
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2. Crear Usuarios Administradores
 
-### Analyzing the Bundle Size
+1. Ve a Firebase Console > Authentication
+2. Haz clic en "Agregar usuario"
+3. Ingresa email y contraseña para los dueños del negocio
+4. Estos usuarios podrán acceder al panel de administración
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📱 Uso
 
-### Making a Progressive Web App
+### Para Clientes
+1. Accede a la página principal
+2. Completa el formulario de reserva:
+   - Nombre completo
+   - Número de teléfono (solo números)
+   - Selecciona peluquero
+   - Elige fecha y horario disponible
+3. Confirma la reserva
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Para Administradores
+1. Haz clic en "Login" en el header
+2. Ingresa las credenciales de administrador
+3. Accede al panel de reservas
+4. Selecciona la fecha para ver las reservas
+5. Usa el botón "Cancelar" para eliminar reservas
 
-### Advanced Configuration
+## 🔒 Seguridad
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- ✅ Autenticación requerida para panel de administración
+- ✅ Validación de datos en frontend y backend
+- ✅ Reglas de Firestore para proteger datos
+- ✅ Solo números permitidos en campo de teléfono
+- ✅ Validación de fechas y horarios
 
-### Deployment
+## 🚀 Despliegue
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Firebase Hosting
+1. Instala Firebase CLI:
+   ```bash
+   npm install -g firebase-tools
+   ```
 
-### `npm run build` fails to minify
+2. Inicia sesión en Firebase:
+   ```bash
+   firebase login
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. Inicializa el proyecto:
+   ```bash
+   firebase init hosting
+   ```
+
+4. Construye el proyecto:
+   ```bash
+   npm run build
+   ```
+
+5. Despliega:
+   ```bash
+   firebase deploy
+   ```
+
+## 🐛 Solución de Problemas
+
+### Error "Missing script: dev"
+- Usa `npm start` en lugar de `npm run dev`
+
+### Error al cancelar reservas
+- Verifica que las reglas de Firestore permitan borrado para usuarios autenticados
+- Asegúrate de estar logueado como administrador
+
+### No se ven los horarios disponibles
+- Verifica que existan peluqueros en la colección `peluqueros`
+- Asegúrate de que las fechas seleccionadas sean futuras
+
+## 📞 Soporte
+
+Si tienes problemas o preguntas:
+- Revisa la consola del navegador para errores
+- Verifica la configuración de Firebase
+- Asegúrate de que todas las dependencias estén instaladas
+
+## 📄 Licencia
+
+Este proyecto es de uso privado para gestión de peluquería.
+
+---
+
+**Desarrollado con ❤️ para optimizar la gestión de reservas de peluquería**
